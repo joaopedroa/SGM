@@ -1,0 +1,4 @@
+api:
+  ibge:
+   url: https://servicodados.ibge.gov.br/api
+   
