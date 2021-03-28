@@ -3,6 +3,7 @@ package br.com.bomdestino.sgm.georreferenciamento.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +17,7 @@ import br.com.bomdestino.sgm.georreferenciamento.models.Estado;
 import br.com.bomdestino.sgm.georreferenciamento.models.Municipio;
 import br.com.bomdestino.sgm.georreferenciamento.services.IbgeService;
 
+@RefreshScope
 @RestController
 @RequestMapping("/localidades")
 public class LocalidadesController {

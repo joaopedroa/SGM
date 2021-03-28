@@ -45,6 +45,7 @@ public class IbgeServiceImpl implements IbgeService {
 	public List<Estado> getTodosEstados() {
 		try {
 			String url = this.dependencyFactory.getUrlIBGE() + "/v1/localidades/estados";
+			System.out.println(url);
 			ParameterizedTypeReference<List<Estado>> type = new ParameterizedTypeReference<List<Estado>>() {};
 			HttpEntity<Object> httpEntity = new HttpEntity<Object>(new HttpHeaders());
 			ResponseEntity<List<Estado>> response = this.restTemplate.exchange(url, HttpMethod.GET, httpEntity, type);
@@ -57,7 +58,7 @@ public class IbgeServiceImpl implements IbgeService {
 	@Override
 	public String getMalhaPorMunicipio(Long idMunicipio) {
 		try {
-			String url = this.dependencyFactory.getUrlIBGE() + "/v1/localidades/estados";
+			String url = this.dependencyFactory.getUrlIBGE() + "/v3/malhas/municipios/" + idMunicipio;
 			HttpEntity<Object> httpEntity = new HttpEntity<Object>(new HttpHeaders());
 			ResponseEntity<String> response = this.restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
 			return response.getBody();
