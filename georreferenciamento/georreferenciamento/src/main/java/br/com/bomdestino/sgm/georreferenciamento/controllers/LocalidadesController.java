@@ -17,7 +17,6 @@ import br.com.bomdestino.sgm.georreferenciamento.models.Estado;
 import br.com.bomdestino.sgm.georreferenciamento.models.Municipio;
 import br.com.bomdestino.sgm.georreferenciamento.services.IbgeService;
 
-@RefreshScope
 @RestController
 @RequestMapping("/localidades")
 public class LocalidadesController {
