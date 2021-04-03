@@ -16,6 +16,10 @@ public class InformacoesLocalidadesServiceImpl implements InformacoesLocalidades
 
 	@Override
 	public void cadastrarInformacoesMunicipio(InformacoesMunicipios infos) {
+		InformacoesMunicipios info = getInfoPorMunicipio(infos.getMunicipioId());
+		if(info != null) {
+			this.repository.delete(infos);
+		}
 		this.repository.save(infos);
 	}
 
