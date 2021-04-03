@@ -1,5 +1,7 @@
 package br.com.bomdestino.sgm.georreferenciamento.services;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,14 @@ public class IbgeServiceImpl implements IbgeService {
 			ParameterizedTypeReference<List<Estado>> type = new ParameterizedTypeReference<List<Estado>>() {};
 			HttpEntity<Object> httpEntity = new HttpEntity<Object>(new HttpHeaders());
 			ResponseEntity<List<Estado>> response = this.restTemplate.exchange(url, HttpMethod.GET, httpEntity, type);
-			return response.getBody();
+			List<Estado> estados = response.getBody();
+			Collections.sort(estados, new Comparator<Estado>() {
+				@Override
+				public int compare(Estado e1, Estado e2) {
+					return e1.getNome().compareTo(e2.getNome());
+				}
+			});
+			return estados;
 		} catch (Exception e) {
 			throw new ServiceException("Erro ao buscar todos os estados", e);
 		}

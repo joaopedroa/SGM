@@ -47,4 +47,6 @@ public class LocalidadesController {
 		headers.setContentType(MediaType.valueOf("image/svg+xml"));
 		return new ResponseEntity<String>(malhaMunicipio, headers, HttpStatus.OK);
 	}
+	
+	
 }
