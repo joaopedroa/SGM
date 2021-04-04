@@ -1,5 +1,7 @@
 package br.com.bomdestino.sgm.carteiraprojetos.services;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.bomdestino.sgm.carteiraprojetos.models.Projeto;
@@ -17,6 +19,18 @@ public class ProjetoServiceImpl implements ProjetoService{
 	@Override
 	public void cadastrarProjeto(Projeto projeto) {
 		this.repository.save(projeto);
+		
+	}
+
+	@Override
+	public Page<Projeto> getTodosProjetos(Pageable pageable) {
+		System.out.println(this.repository.findAll(pageable));
+		return this.repository.findAll(pageable);
+	}
+
+	@Override
+	public void deleteProjeto(Long id) {
+		this.repository.deleteById(id);
 		
 	}
 
