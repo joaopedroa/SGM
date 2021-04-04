@@ -11,5 +11,7 @@ public interface ProjetoService {
 	
 	Page<Projeto> getTodosProjetos(Pageable pageable);
 	
+	Integer getTotalProjetos();
+	
 	void deleteProjeto(Long id);
 }

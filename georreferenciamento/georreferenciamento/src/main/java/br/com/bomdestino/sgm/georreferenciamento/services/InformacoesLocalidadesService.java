@@ -7,4 +7,6 @@ public interface InformacoesLocalidadesService {
 	void cadastrarInformacoesMunicipio(InformacoesMunicipios infos);
 	
 	InformacoesMunicipios getInfoPorMunicipio(Long idMunicipio);
+	
+	Integer getTotalCadastrado();
 }

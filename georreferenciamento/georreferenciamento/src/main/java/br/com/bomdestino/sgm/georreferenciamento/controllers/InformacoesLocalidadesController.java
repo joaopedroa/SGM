@@ -34,5 +34,10 @@ public class InformacoesLocalidadesController {
 		return new ResponseEntity<InformacoesMunicipios>(info, HttpStatus.OK);
 		
 	}
+	
+	@GetMapping("/total")
+	public ResponseEntity<Integer> getTotal(){
+		return new ResponseEntity<Integer>(this.service.getTotalCadastrado(), HttpStatus.OK);
+	}
 
 }

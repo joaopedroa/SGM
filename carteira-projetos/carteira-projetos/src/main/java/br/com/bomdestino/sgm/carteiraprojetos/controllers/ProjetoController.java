@@ -1,7 +1,5 @@
 package br.com.bomdestino.sgm.carteiraprojetos.controllers;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -37,6 +35,12 @@ public class ProjetoController {
 	public ResponseEntity<Page<Projeto>> getProjetos(Pageable pageble){
 		Page<Projeto> projetos = this.service.getTodosProjetos(pageble);
 		return new ResponseEntity<Page<Projeto>>(projetos, HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/total")
+	public ResponseEntity<Integer> getTotalProjetos(){
+		Integer totalProjetos = this.service.getTotalProjetos();
+		return new ResponseEntity<Integer>(totalProjetos, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("{id}")

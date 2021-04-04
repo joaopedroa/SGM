@@ -1,5 +1,7 @@
 package br.com.bomdestino.sgm.georreferenciamento.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import br.com.bomdestino.sgm.georreferenciamento.models.InformacoesMunicipios;
@@ -26,6 +28,15 @@ public class InformacoesLocalidadesServiceImpl implements InformacoesLocalidades
 	@Override
 	public InformacoesMunicipios getInfoPorMunicipio(Long idMunicipio) {
 		return this.repository.findByMunicipioId(idMunicipio);
+	}
+
+	@Override
+	public Integer getTotalCadastrado() {
+		List<InformacoesMunicipios> infos = this.repository.findAll();
+		if(infos == null)
+			return 0;
+		
+		return infos.size();
 	}
 
 }

@@ -1,5 +1,7 @@
 package br.com.bomdestino.sgm.carteiraprojetos.services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,15 @@ public class ProjetoServiceImpl implements ProjetoService{
 	public void deleteProjeto(Long id) {
 		this.repository.deleteById(id);
 		
+	}
+
+	@Override
+	public Integer getTotalProjetos() {
+		List<Projeto> projetos = (List<Projeto>) this.repository.findAll();
+		if(projetos == null)
+			return 0;
+			
+		return projetos.size();
 	}
 
 }
