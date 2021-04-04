@@ -9,7 +9,7 @@ public class Municipio implements Serializable {
 	private Long id;
 
 	private String nome;
-
+	
 	public Municipio() {
 	}
 

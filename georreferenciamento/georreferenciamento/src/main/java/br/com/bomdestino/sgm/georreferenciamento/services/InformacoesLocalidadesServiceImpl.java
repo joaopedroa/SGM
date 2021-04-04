@@ -18,7 +18,7 @@ public class InformacoesLocalidadesServiceImpl implements InformacoesLocalidades
 	public void cadastrarInformacoesMunicipio(InformacoesMunicipios infos) {
 		InformacoesMunicipios info = getInfoPorMunicipio(infos.getMunicipioId());
 		if(info != null) {
-			this.repository.delete(infos);
+			this.repository.delete(info);
 		}
 		this.repository.save(infos);
 	}
