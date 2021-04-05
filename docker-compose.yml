@@ -1,0 +1,94 @@
+version: '3'
+services:
+  config-server:
+    build:
+      context: ./config-server/config-server
+      dockerfile: ./Dockerfile
+    image: sgm/ms-configserver
+    container_name: config-server
+    restart: always
+    ports:
+      - "8888:8888"
+    networks:
+      - consumer-producer
+      
+  eureka-server:
+    build:
+      context: ./eureka-server/eureka-server
+      dockerfile: ./Dockerfile
+    image: sgm/ms-eurekaserver
+    container_name: eureka-server
+    restart: always
+    ports:
+      - "8761:8761"
+    networks:
+      - consumer-producer
+
+  api-gateway-zuul:
+    build:
+      context: ./api-gateway-zuul/api-gateway-zuul
+      dockerfile: ./Dockerfile
+    image: sgm/ms-gatewayzuul
+    restart: always
+    ports:
+      - "8765:8765"
+    depends_on:
+      - eureka-server
+      - config-server
+    networks:
+      - consumer-producer      
+
+  users:
+    build:
+      context: ./users/users
+      dockerfile: ./Dockerfile
+    image: sgm/ms-users
+    container_name: users
+    restart: always
+    depends_on:
+      - eureka-server
+      - config-server
+    networks:
+      - consumer-producer
+      
+  oauth:
+    build:
+      context: ./ms-oauth/ms-oauth
+      dockerfile: ./Dockerfile
+    image: sgm/ms-oauth
+    container_name: oauth
+    restart: always
+    depends_on:
+      - eureka-server
+      - config-server
+    networks:
+      - consumer-producer
+      
+  carteira-projetos:
+    build:
+      context: ./carteira-projetos/carteira-projetos
+      dockerfile: ./Dockerfile
+    image: sgm/ms-carteira
+    container_name: carteira-projetos
+    restart: always
+    depends_on:
+      - eureka-server
+      - config-server
+    networks:
+      - consumer-producer
+      
+  georreferenciamento:
+    build:
+      context: ./georreferenciamento/georreferenciamento
+      dockerfile: ./Dockerfile
+    image: sgm/ms-georreferenciamento
+    container_name: georreferenciamento
+    restart: always
+    depends_on:
+      - eureka-server
+      - config-server
+    networks:
+      - consumer-producer       
+
+networks:
+  consumer-producer:
